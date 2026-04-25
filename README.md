@@ -6,7 +6,7 @@ CGBridge is a novel framework designed to enhance the code understanding capabil
 
 - **Stage 1: Self-supervised Structural Pretraining.** We train a powerful Code Graph Encoder (CGE) to learn meaningful representations of code graphs through self-supervised tasks, including graph-level contrastive learning and edge-type prediction.
 
-- **Stage 2: Cross-Modal Alignment.** We introduce a "Bridge" module, initialized to align the learned graph embeddings from Stage 1 with the semantic space of natural language and code text.
+- **Stage 2: Cross-Modal Semantic Alignment.** We introduce a "Bridge" module, initialized to align the learned graph embeddings from Stage 1 with the semantic space of natural language and code text.
 
 - **Stage 3: Instruction-based Task Adaptation.** The aligned graph representations are used as soft prompts for a frozen LLM, which is then instruction-tuned on various downstream code understanding tasks, such as code summarization and translation.
 
@@ -16,7 +16,6 @@ CGBridge is a novel framework designed to enhance the code understanding capabil
 
 ### 1. Clone the Repository
 
-*Note: The repository is currently provided as an anonymous link for review purposes. The official public repository will be made available upon acceptance.*
 
 ```bash
 git clone https://github.com/BUPT-GAMMA/CGBridge.git
@@ -46,14 +45,14 @@ pip install -r requirements.txt
 - **Download Raw Data:**
   
   - **Code Summarization:** Download the [CodeSearchNet](https://github.com/github/CodeSearchNet) dataset (Python subset).
-  - **Code Translation:** Download the [XLCost](https://github.com/reddy-lab-code-research/XLCoST) dataset (Python-Java pair).
+  - **Code Translation:** Download the [XLCoST](https://github.com/reddy-lab-code-research/XLCoST) dataset (Python-Java pair).
   
   Place the raw dataset files into their respective task directories, for example: `tasks/summarization/code_datasets/` and `tasks/translation/code_datasets/`.
 
 - **Refine Source Data:**
   To ensure the quality of our source data, we performed a refinement step. This process is crucial for training a high-performing model but is also resource-intensive.
   
-  - **For Summarization:** We used the `tasks/summarization/summary_refinement.py` script to generate high-quality docstrings for code snippets. The prompt used is detailed in our paper's Appendix D.1 and can also be found in our stage 3 configuration files (e.g., `configs/stage3_configs/summ-*.yaml`).
+  - **For Summarization:** We used the `tasks/summarization/summary_refinement.py` script to generate high-quality docstrings for code snippets. The prompt used is detailed in the appendix of our paper and can also be found in the Stage 3 configuration files (e.g., `configs/stage3_configs/summ-*.yaml`).
   - **For Translation:** We used the `tasks/translation/format_code.py` script to correct syntax and format the code, ensuring its functional correctness and executability.
 
 ### 5. Experiment Environment
